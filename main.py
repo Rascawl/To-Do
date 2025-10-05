@@ -29,8 +29,3 @@ if menu.lower() == 'a':
 
 
 
-
-#scratch paper ko lang muna haha 
-#add = input("Enter your task: ")
-#tasks.append(add)
-#print("Here is your pending task: \n", ", ".join(tasks))
