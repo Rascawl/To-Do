@@ -10,13 +10,17 @@ menu = input("""Hello user, whata do you wanna do?
 #mga def natin
 def addTasks():
     while True:
-        add = input("Enter a task, press enter to input the tasks: ")  #kailangan enter para ma input, pede mo ibahin to if u want
-        if add.lower() == "enter":
+        add = input("Enter a task (press enter to stop): ")  #kailangan enter para ma input, pede mo ibahin to if u want
+        if add.lower() == "":
             break
         else: 
             tasks.append(add)
-    for add in tasks: #prints the tasks
-        print(add)
+
+    print("______THIS IS YOUR TASKS______")
+    for add in tasks: #prints the tasks 
+        
+        print(add) #if kaya mo pre try mo lagyan ng number yung list natin like 1. 2. gamit ka loop idk din eh
+        
 
   
 #as of now di ko alam pano iloop program para makapag lagay ng multiple tasks... btw yung .lower() means tinatransform ko yung nakuhang string sa menu bilang lower case
