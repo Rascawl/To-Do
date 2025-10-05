@@ -7,13 +7,19 @@ menu = input("""Hello user, what do you wanna do?
                 [D] Delete a task
                 [E] Edit a task
                 Enter the letter: """)
-
-#as of now di ko alam pano iloop program para makapag lagay ng multiple tasks... btw yung .lower() means tinatransform ko yung nakuhang string sa menu bilang lower case
-if menu.lower() == 'a':
+def addTasks():
     add = input("Enter a task: ") 
     task.append(add)
 
     print("Here is your pending task: \n", ", ".join(task))
+ 
+
+#as of now di ko alam pano iloop program para makapag lagay ng multiple tasks... btw yung .lower() means tinatransform ko yung nakuhang string sa menu bilang lower case
+if menu.lower() == 'a':
+    addTasks()
+
+
+
 
 
 
