@@ -1,22 +1,28 @@
-#task ay yung array natin na pag lalagyan ng mga task, hindi ko alam ano pinaka effective na way pero I think tasks.append() yung gagamitin natin para mag delete
-task = []
+#tasks ay yung array natin na pag lalagyan ng mga task, hindi ko alam ano pinaka effective na way pero I think tasks.append() yung gagamitin natin para mag delete
+tasks = []
 
-#Ito menu natin gamit tayo def(), pero isip kapa din if may mas effective way mag handle ng options
-menu = input("""Hello user, what do you wanna do?
+menu = input("""Hello user, whata do you wanna do?
                 [A] Add a task
                 [D] Delete a task
                 [E] Edit a task
                 Enter the letter: """)
+
+#mga def natin
 def addTasks():
-    add = input("Enter a task: ") 
-    task.append(add)
+    while True:
+        add = input("Enter a task, press enter to input the tasks: ")  #kailangan enter para ma input, pede mo ibahin to if u want
+        if add.lower() == "enter":
+            break
+        else: 
+            tasks.append(add)
+    for add in tasks: #prints the tasks
+        print(add)
 
-    print("Here is your pending task: \n", ", ".join(task))
- 
-
+  
 #as of now di ko alam pano iloop program para makapag lagay ng multiple tasks... btw yung .lower() means tinatransform ko yung nakuhang string sa menu bilang lower case
 if menu.lower() == 'a':
     addTasks()
+
 
 
 
