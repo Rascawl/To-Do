@@ -3,6 +3,7 @@
 tasks = []
 
 def saveTask():
+
     file_path = input("Please enter the file name of your task: ")
     try:
         with open(file_path, "x") as file:
@@ -13,14 +14,41 @@ def saveTask():
     except FileExistsError:
         print("There is a list with the same name")
 
-def readTask():
-    file_path = input("Please enter the file name of the task you want to edit: ")
-    with open(file_path, "r") as file:
-        contentList = file.read()
-        print(contentList)
+def editTask():
 
+    while True:
+        file_path = input("Please enter the file name of the task you want to edit: ")
+        try:
+            with open(file_path, "r") as file:
+                editList = file.readlines()
+            print("".join(editList))
+            break
 
-def addTasks():
+        except FileNotFoundError:
+            print("List does not exist")
+        
+    while True:
+        try:
+            index = int(input("Select the number of task you want to edit: "))
+            
+            if index <= 0 or index >= len(editList):
+                print("Task out of bounds, try again")
+                continue
+
+            newTask = input("Enter a new task: ")
+
+            editList[index] = f"{index}. {newTask}\n"
+        except ValueError:
+            print("Error try again")
+
+        with open(file_path, "w") as file:
+            file.writelines(editList)
+
+        print("Task updated succesfully")
+        break
+
+def createTasks():
+
     while True:
         add = input("Enter a task (press enter to stop): ")  
         if add.lower() == "":
@@ -36,33 +64,41 @@ def addTasks():
     if confirm.lower() == 'y':
         saveTask()
 
+def addTasks():
+    
+    while True:
+        file_path = input("Please enter the file name of the task you want to edit: ")
+        try:
+            with open(file_path, "r") as file:
+                editList = file.readlines()
+            print("".join(editList))
+            break
+
+        except FileNotFoundError:
+            print("List does not exist")
+    
+    currentNumber = len(editList) - 1
+
+    with open(file_path, "a") as file:
+        while True:
+            addTask = input("Enter new Task (press enter to stop): ")
+            if addTask == "":
+                break
+            currentNumber +=1
+            file.write(f"{currentNumber}. {addTask}\n")
+        print("Tasks added succesfully")
+
 menu = input("""Hello user, whata do you wanna do?
+                [C] Create new List
                 [A] Add a task
                 [D] Delete a task
                 [E] Edit a task
                 Enter the letter: """)
 
-if menu.lower() == 'a':
-    addTasks()
+if menu.lower() == 'c':
+    createTasks()
 elif menu.lower() == 'e':
-    readTask()
+    editTask()
+elif menu.lower() == 'a':
+    addTasks()
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
