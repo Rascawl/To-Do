@@ -88,17 +88,59 @@ def addTasks():
             file.write(f"{currentNumber}. {addTask}\n")
         print("Tasks added succesfully")
 
-menu = input("""Hello user, whata do you wanna do?
-                [C] Create new List
-                [A] Add a task
-                [D] Delete a task
-                [E] Edit a task
-                Enter the letter: """)
 
-if menu.lower() == 'c':
-    createTasks()
-elif menu.lower() == 'e':
-    editTask()
-elif menu.lower() == 'a':
-    addTasks()
+def deleteTask():
+
+    while True:
+        file_path = input("Please enter the file name of the task you want to edit: ")
+        try:
+            with open(file_path, "r") as file:
+                editList = file.readlines()
+            print("".join(editList))
+            break
+
+        except FileNotFoundError:
+            print("List does not exist")
+
+    while True:
+        index = int(input("Select the number of task you want to delete: "))
+
+        if index <= 0 or index >= len(editList):
+            print("Task out of bounds, try again")
+        else:
+            break
+
+    editList.pop(index)
     
+    with open(file_path, "w") as file:
+        
+        file.write(editList[0]) #writes the header
+        
+        for i, editList in enumerate(editList[1:], start=1):
+            taskNumber = editList.strip().split(".", 1)[1]
+            file.write(f"{i}. {taskNumber}\n")
+
+    print("Task succesfully removed")
+
+while True:
+    menu = input("""Hello user, what do you wanna do?
+                    [C] Create new List
+                    [A] Add a task
+                    [D] Delete a task
+                    [E] Edit a task
+                    [X] Exit Program
+                    Enter the letter: """)
+
+    if menu.lower() == 'c':
+        createTasks()
+    elif menu.lower() == 'e':
+        editTask()
+    elif menu.lower() == 'a':
+        addTasks()
+    elif menu.lower() == 'd':
+        deleteTask()
+    elif menu.lower() == 'x':
+        break
+    else:
+        print("Error, try again")
+        
